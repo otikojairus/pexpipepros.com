@@ -1,11 +1,36 @@
 import { getSiteUrl } from "@/lib/seo";
 
 export function GET() {
+  const siteUrl = getSiteUrl().replace(/\/$/, "");
+  const crawlerGroups = [
+    "*",
+    "Googlebot",
+    "Googlebot-Image",
+    "Googlebot-News",
+    "Googlebot-Video",
+    "Google-Extended",
+    "Bingbot",
+    "Applebot",
+    "DuckDuckBot",
+    "YandexBot",
+    "Baiduspider",
+    "GPTBot",
+    "ChatGPT-User",
+    "OAI-SearchBot",
+    "CCBot",
+    "ClaudeBot",
+    "anthropic-ai",
+    "PerplexityBot",
+    "Perplexity-User",
+    "Bytespider",
+    "AhrefsBot",
+    "SemrushBot",
+  ];
+
   const body = [
-    "User-agent: *",
-    "Allow: /",
-    "",
-    `Sitemap: ${getSiteUrl()}/sitemap.xml`,
+    ...crawlerGroups.flatMap((agent) => [`User-agent: ${agent}`, "Allow: /", ""]),
+    `Host: ${siteUrl}`,
+    `Sitemap: ${siteUrl}/sitemap.xml`,
     "",
   ].join("\n");
 

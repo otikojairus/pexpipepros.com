@@ -51,7 +51,12 @@ export function SiteNavbar() {
             aria-expanded={isDrawerOpen}
             onClick={() => setIsDrawerOpen((open) => !open)}
           >
-            Menu
+            <span className="sr-only">Open menu</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+              <path d="M4 7H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M4 12H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M4 17H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
           </button>
         </div>
       </header>
@@ -62,7 +67,11 @@ export function SiteNavbar() {
           <div className="ppp-drawer-head">
             <SiteLogo />
             <button type="button" className="ppp-close-btn" aria-label="Close menu" onClick={() => setIsDrawerOpen(false)}>
-              Close
+              <span className="sr-only">Close menu</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
             </button>
           </div>
           <nav className="ppp-mobile-nav" aria-label="Mobile navigation">
