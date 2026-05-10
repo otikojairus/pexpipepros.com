@@ -1,0 +1,12 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="markG" x1="14" y1="12" x2="82" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A34"/>
+      <stop offset="1" stop-color="#D94A10"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="80" height="80" rx="22" fill="#FFF3E3"/>
+  <path d="M24 30H62C71.9411 30 80 38.0589 80 48C80 57.9411 71.9411 66 62 66H24V30Z" fill="url(#markG)"/>
+  <path d="M24 24H46C57.0457 24 66 32.9543 66 44V72H44C32.9543 72 24 63.0457 24 52V24Z" fill="#0E7D7D"/>
+  <circle cx="54" cy="48" r="8" fill="#FFE8CA"/>
+</svg>

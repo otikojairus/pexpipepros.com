@@ -1,0 +1,14 @@
+<svg width="640" height="180" viewBox="0 0 640 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGrad" x1="40" y1="28" x2="150" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7A34"/>
+      <stop offset="1" stop-color="#D94A10"/>
+    </linearGradient>
+  </defs>
+  <rect x="22" y="22" width="136" height="136" rx="32" fill="#FFF3E3"/>
+  <path d="M50 58H114C129.464 58 142 70.536 142 86C142 101.464 129.464 114 114 114H50V58Z" fill="url(#logoGrad)"/>
+  <path d="M50 48H86C103.673 48 118 62.3269 118 80V124H82C64.3269 124 50 109.673 50 92V48Z" fill="#0E7D7D"/>
+  <circle cx="96" cy="86" r="12" fill="#FFE8CA"/>
+  <text x="188" y="84" fill="#1D2130" font-size="54" font-family="Syne, Arial, sans-serif" font-weight="700" letter-spacing="-0.03em">Pex Pipe Pros</text>
+  <text x="190" y="122" fill="#586076" font-size="23" font-family="Public Sans, Arial, sans-serif">Poly B Replacement and PEX Repipe Specialists</text>
+</svg>
