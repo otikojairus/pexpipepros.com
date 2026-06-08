@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/json-ld";
 import { PhoneLink } from "@/components/phone-link";
-import { PAGE_TYPES, PEX_PAGES, getPagesByType } from "@/lib/pex-data";
+import { PAGE_TYPES, PEX_PAGES, getPagesByType, parseArea, type PexPage } from "@/lib/pex-data";
 import { EMERGENCY_PHONE_DISPLAY, SITE_NAME, absoluteUrl } from "@/lib/seo";
 
 const CALL_PREP = [
@@ -29,7 +29,7 @@ const SERVICE_EXPECTATIONS = [
 
 const SERVICES_FAQS = [
   {
-    question: "How do I choose the right poly b replacement city page for my property?",
+    question: "How do I choose the right city page for my property?",
     answer:
       "Start with your city or province listing, then choose the page that matches your service need. If you are unsure, call and describe your symptoms so intake can route you correctly.",
   },
@@ -45,6 +45,23 @@ const SERVICES_FAQS = [
   },
 ] as const;
 
+const NATIONAL_GUIDE_LABELS: Record<number, string> = {
+  1: "Replacement planning",
+  2: "Conversion to PEX",
+  3: "PEX piping installation",
+  4: "Older plastic pipe guide",
+  5: "Certified plumber directory",
+  6: "Cost guide",
+  7: "Full price breakdown",
+  11: "Plumbing overview",
+  12: "Risk guide",
+  13: "Identification guide",
+  14: "Insurance guide",
+  15: "Grant and rebate guide",
+  16: "Lifespan guide",
+  17: "PEX comparison guide",
+};
+
 function getUniqueLocationsForType(pageType: string) {
   const pages = getPagesByType(pageType);
   const seen = new Set<string>();
@@ -58,17 +75,26 @@ function getUniqueLocationsForType(pageType: string) {
   });
 }
 
+function getLocationLabel(page: PexPage) {
+  const area = parseArea(page.targetArea);
+  return area.kind === "national" ? "Canada" : area.label;
+}
+
+function getGuideLabel(page: PexPage) {
+  return NATIONAL_GUIDE_LABELS[page.id] ?? `${page.pageType} guide`;
+}
+
 export const metadata: Metadata = {
-  title: "poly b replacement Canada local service | Pex Pipe Pros",
+  title: "Repipe Service Directory Canada | Pex Pipe Pros",
   description:
-    "poly b replacement Canada service locations help you compare city pages, pricing context, and scheduling pathways. Call 1-888-702-2090 to route your inspection.",
+    "Find Canadian repipe service locations, pricing context, and scheduling pathways. Call 1-888-702-2090 to route your inspection.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
-    title: `poly b replacement Canada local service | ${SITE_NAME}`,
+    title: `Repipe Service Directory Canada | ${SITE_NAME}`,
     description:
-      "poly b replacement Canada: licensed repipe planning, clear pricing factors, and dependable local scheduling support. Call 1-888-702-2090 today.",
+      "Compare local repipe planning, pricing factors, and scheduling support. Call 1-888-702-2090 today.",
     url: absoluteUrl("/services"),
     type: "website",
     siteName: SITE_NAME,
@@ -104,10 +130,10 @@ export default function ServicesPage() {
         <div className="ppp-container ppp-hero-centered">
           <div className="ppp-hero-max">
             <p className="ppp-eyebrow">Service Locations</p>
-            <h1 className="ppp-display">Poly B Replacement Canada services by city, province, and project type.</h1>
+            <h1 className="ppp-display">Poly B replacement services by city, province, and project type.</h1>
             <p className="ppp-lead">
               Use this directory to find the most relevant service page for your property and timeline. Whether you are dealing with an active leak,
-              early warning signs, or proactive replacement planning, each section helps you move from uncertainty to a practical next step. You can
+              early warning signs, or proactive repipe planning, each section helps you move from uncertainty to a practical next step. You can
               review local options, compare project pathways, and call for direct intake support to secure an inspection schedule that fits your area.
               If you are balancing urgency with budget planning, this page gives you a fast way to prioritize the right location and service track.
             </p>
@@ -141,7 +167,7 @@ export default function ServicesPage() {
 
                 <div className="ppp-index-links ppp-location-grid">
                   {items.map((page) => (
-                    <Link key={page.slug} href={`/${page.slug}`}>{page.primaryKeyword}</Link>
+                    <Link key={page.slug} href={`/${page.slug}`}>{getLocationLabel(page)}</Link>
                   ))}
                 </div>
               </article>
@@ -159,7 +185,7 @@ export default function ServicesPage() {
           <div className="ppp-related-links ppp-location-grid">
             {nationalGuides.map((page) => (
               <Link key={page.slug} href={`/${page.slug}`}>
-                {page.primaryKeyword}
+                {getGuideLabel(page)}
               </Link>
             ))}
           </div>
